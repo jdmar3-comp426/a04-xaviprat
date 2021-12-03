@@ -13,8 +13,8 @@ app.use(express.json());
 // Set server port
 var HTTP_PORT = 5000
 // Start server
-const server = app.listen(HTTP_PORT, () => {
-	
+app.listen(HTTP_PORT, () => {
+
     console.log("Server running on port %PORT%".replace("%PORT%",HTTP_PORT))
 });
 // READ (HTTP method GET) at root endpoint /app/
