@@ -4,7 +4,8 @@ var app = express()
 // Require database SCRIPT file
 var db = require("./database.js")
 // Require md5 MODULE
-var md5 = require("md5")
+var md5 = require("md5");
+const { json } = require("express");
 // Make Express use its own built-in body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -36,6 +37,10 @@ app.get("/app/users", (req, res) => {
 
 // READ a single user (HTTP method GET) at endpoint /app/user/:id
 
+app.get("/app/user/:id", (req,res) => {
+	const stmt = db.prepare("SELECT * FROM userinfo WHERE id = ?").get(req.params.id);
+	res.status(200).json(stmt);
+})
 // UPDATE a single user (HTTP method PATCH) at endpoint /app/update/user/:id
 
 // DELETE a single user (HTTP method DELETE) at endpoint /app/delete/user/:id
